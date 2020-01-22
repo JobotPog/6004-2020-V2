@@ -15,7 +15,7 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 
 import frc.robot.OI;
 //import frc.robot.subsystems.*;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import com.ctre.phoenix.motorcontrol.can.*;
 
@@ -34,10 +34,10 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  WPI_TalonSRX _leftMaster = new WPI_TalonSRX(11);
-  WPI_TalonSRX _rightMaster = new WPI_TalonSRX(10);
-  WPI_VictorSPX  _leftFollow = new WPI_VictorSPX (13);
-  WPI_VictorSPX  _rightFollow = new WPI_VictorSPX (12);
+  WPI_TalonFX _leftMaster = new WPI_TalonFX(1);
+  WPI_TalonFX _rightMaster = new WPI_TalonFX(2);
+  WPI_TalonFX  _leftFollow = new WPI_TalonFX (3);
+  WPI_TalonFX  _rightFollow = new WPI_TalonFX (4);
   DifferentialDrive _drive = new DifferentialDrive(_leftMaster, _rightMaster);
     
   public static OI m_oi;

@@ -10,21 +10,17 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.InvertType;
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.EncoderType;
 import com.revrobotics.SparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import frc.robot.Subsystems.*;
 
-import frc.robot.OI;
-//import frc.robot.subsystems.*;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import com.ctre.phoenix.motorcontrol.can.*;
 
 
@@ -41,14 +37,10 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  public static DriveTrain driveSub;
+  public static Shooter shooterSub;
 
-  WPI_TalonFX _leftMaster = new WPI_TalonFX(1);
-  WPI_TalonFX _rightMaster = new WPI_TalonFX(2);
-  WPI_TalonFX  _leftFollow = new WPI_TalonFX (3);
-  WPI_TalonFX  _rightFollow = new WPI_TalonFX (4);
-  DifferentialDrive _drive = new DifferentialDrive(_leftMaster, _rightMaster);
 
-  VictorSPX Shooter = new VictorSPX(5);
   CANSparkMax Pivot = new CANSparkMax(6, MotorType.kBrushless);
   public static OI m_oi;
 
@@ -63,20 +55,7 @@ public class Robot extends TimedRobot {
 
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
-    _leftMaster.configFactoryDefault();
-    _rightMaster.configFactoryDefault();
-    _leftFollow.configFactoryDefault();
-    _rightFollow.configFactoryDefault();
-    
-    _leftFollow.follow(_leftMaster);
-    _rightFollow.follow(_rightMaster);
-    
-    _leftMaster.setInverted(false); // <<<<<< Adjust this until robot drives forward when stick is forward
-    _rightMaster.setInverted(true); // <<<<<< Adjust this until robot drives forward when stick is forward
-    _leftFollow.setInverted(InvertType.FollowMaster);
-    _rightFollow.setInverted(InvertType.FollowMaster);
-    _drive.setRightSideInverted(false); // do not change this
+    SmartDashboard.putData("Auto choices", m_chooser);   
 
     //ALWAYS LAST!!!!!!!!!!!!!!!!!!!!!!!!!!
     m_oi = new OI();
@@ -136,21 +115,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     //Scheduler.getInstance().run();
     
-    double forward = 1 * m_oi._driver.getY();
-    double turn = m_oi._driver.getTwist();
 
-    double sliderInput = m_oi._driver.getRawAxis(3);
-    double slider = sliderInput;
-    if(sliderInput < 15 && sliderInput > -15){
-      slider = 0;
-    }
-    else{
-      slider = sliderInput;
-    }
-
-    _drive.arcadeDrive(-forward, turn);
-
-    Shooter.set(ControlMode.PercentOutput,slider);
+   
 
   }
 

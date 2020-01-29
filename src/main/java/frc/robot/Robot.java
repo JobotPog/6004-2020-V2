@@ -65,20 +65,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
 
     SmartDashboard.putData("Auto choices", m_chooser);
-    _leftMaster.configFactoryDefault();
-    _rightMaster.configFactoryDefault();
-    _leftFollow.configFactoryDefault();
-    _rightFollow.configFactoryDefault();
-    
-    _leftFollow.follow(_leftMaster);
-    _rightFollow.follow(_rightMaster);
-    
-    _leftMaster.setInverted(false); // <<<<<< Adjust this until robot drives forward when stick is forward
-    _rightMaster.setInverted(true); // <<<<<< Adjust this until robot drives forward when stick is forward
-    _leftFollow.setInverted(InvertType.FollowMaster);
-    _rightFollow.setInverted(InvertType.FollowMaster);
-    _drive.setRightSideInverted(false); // do not change this
-    
+        
 
      // PWM port 9
     // Must be a PWM header, not MXP or DIO

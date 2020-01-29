@@ -115,7 +115,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-
+    // Fill the buffer with a rainbow
+    rainbow();
+    // Set the LEDs
+    m_led.setData(m_ledBuffer);
   }
 
   /**
@@ -182,10 +185,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    // Fill the buffer with a rainbow
-    rainbow();
-    // Set the LEDs
-    m_led.setData(m_ledBuffer);
+    
   }
 
   private void rainbow() {
@@ -196,6 +196,7 @@ public class Robot extends TimedRobot {
       final var hue = (m_rainbowFirstPixelHue + (i * 180 / m_ledBuffer.getLength())) % 180;
       // Set the value
       m_ledBuffer.setHSV(i, hue, 255, 128);
+      
     }
     // Increase by to make the rainbow "move"
     m_rainbowFirstPixelHue += 3;

@@ -10,7 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import edu.wpi.first.wpilibj.command.Scheduler;
+import java.sql.Driver;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
@@ -43,7 +44,7 @@ public class Robot extends TimedRobot {
   public static Shooter shooterSub;
 
 
-  CANSparkMax Pivot = new CANSparkMax(6, MotorType.kBrushless);
+  //CANSparkMax Pivot = new CANSparkMax(6, MotorType.kBrushless);
 
   private AddressableLED m_led;
   private AddressableLEDBuffer m_ledBuffer;
@@ -58,28 +59,29 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    Pivot.restoreFactoryDefaults();
-    Pivot.getEncoder(EncoderType.kHallSensor, 4096);
+    //Pivot.restoreFactoryDefaults();
+    //Pivot.getEncoder(EncoderType.kHallSensor, 4096);
 
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
 
     SmartDashboard.putData("Auto choices", m_chooser);
-        
+    System.out.println("robotinit");
 
      // PWM port 9
     // Must be a PWM header, not MXP or DIO
-    m_led = new AddressableLED(9);
+    //m_led = new AddressableLED(9);
 
     // Reuse buffer
     // Default to a length of 60, start empty output
     // Length is expensive to set, so only set it once, then just update data
-    m_ledBuffer = new AddressableLEDBuffer(300);
-    m_led.setLength(m_ledBuffer.getLength());
+    //m_ledBuffer = new AddressableLEDBuffer(300);
+    //m_led.setLength(m_ledBuffer.getLength());
 
     // Set the data
-    m_led.setData(m_ledBuffer);
-    m_led.start();
+    //m_led.setData(m_ledBuffer);
+    //m_led.start();  
+    driveSub = new DriveTrain();
 
 
     //ALWAYS LAST!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -97,9 +99,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     // Fill the buffer with a rainbow
-    rainbow();
+    //rainbow();
     // Set the LEDs
-    m_led.setData(m_ledBuffer);
+    //m_led.setData(m_ledBuffer);
   }
 
   /**
@@ -141,8 +143,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    //Scheduler.getInstance().run();
-    
+    Scheduler.getInstance().run();
+    //System.out.println("run teleop");
 
    
 

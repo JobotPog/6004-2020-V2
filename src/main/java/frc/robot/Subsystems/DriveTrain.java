@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.*;
+import frc.robot.Commands.*;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -45,22 +46,26 @@ public class DriveTrain extends Subsystem {
       _rightFollow.setInverted(InvertType.FollowMaster);
       _drive.setRightSideInverted(false); // do not change this
      //setDefaultCommand(new liftAxis());
+     System.out.print("init drivetrain");
     }
 
     @Override
     public void initDefaultCommand() {
-      
+     // System.out.println("default command");      
 
-       driveAround();
+       setDefaultCommand(new ArcadeDrive());
     }
   
   
       public void driveAround() {
         // Update motor speed to passed in value
-        double forward = 1 * m_oi._driver.getY();
-        double turn = m_oi._driver.getTwist();
-  
-        _drive.arcadeDrive(-forward, turn);
+        
+       // _drive.arcadeDrive(-forward, turn);
+      }
+
+      public void arcadeDrive(double speed, double turn){
+       // System.out.println(speed);
+        _drive.arcadeDrive(-speed, turn);
       }
         
   }

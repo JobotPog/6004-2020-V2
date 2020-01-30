@@ -43,6 +43,10 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveSub;
   public static Shooter shooterSub;
 
+  /*----------------------------------
+  EXAMPLE SUBSYTEM SETUP
+  */
+  public static ExampleSub expSub;
 
   //CANSparkMax Pivot = new CANSparkMax(6, MotorType.kBrushless);
 
@@ -83,6 +87,10 @@ public class Robot extends TimedRobot {
     //m_led.start();  
     driveSub = new DriveTrain();
 
+    /*----------------------------------
+    EXAMPLE SUBSYTEM INIT
+    */
+    expSub = new ExampleSub();
 
     //ALWAYS LAST!!!!!!!!!!!!!!!!!!!!!!!!!!
     m_oi = new OI();

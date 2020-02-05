@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+ 
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -48,6 +48,10 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveSub;
   public static Shooter shooterSub;
 
+  /*----------------------------------
+  EXAMPLE SUBSYTEM SETUP
+  */
+  public static ExampleSub expSub;
 
   public WPI_TalonFX _leftMaster = driveSub._leftMaster;
   public WPI_TalonFX _rightMaster = driveSub._rightMaster;
@@ -97,6 +101,10 @@ public class Robot extends TimedRobot {
     //m_led.start();  
     driveSub = new DriveTrain();
 
+    /*----------------------------------
+    EXAMPLE SUBSYTEM INIT
+    */
+    expSub = new ExampleSub();
 
     //ALWAYS LAST!!!!!!!!!!!!!!!!!!!!!!!!!!
     m_oi = new OI();

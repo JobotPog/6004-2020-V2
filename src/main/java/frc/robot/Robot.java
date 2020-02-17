@@ -8,9 +8,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
 import java.sql.Driver;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -19,6 +22,8 @@ import com.revrobotics.EncoderType;
 import com.revrobotics.SparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Subsystems.*;
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -47,6 +52,15 @@ public class Robot extends TimedRobot {
   EXAMPLE SUBSYTEM SETUP
   */
   public static ExampleSub expSub;
+
+  public WPI_TalonFX _leftMaster = driveSub._leftMaster;
+  public WPI_TalonFX _rightMaster = driveSub._rightMaster;
+  public WPI_TalonFX  _leftFollow = driveSub._leftFollow;
+  public WPI_TalonFX  _rightFollow = driveSub._rightFollow;
+
+  DifferentialDrive _drive = driveSub._drive;
+  
+
 
   //CANSparkMax Pivot = new CANSparkMax(6, MotorType.kBrushless);
 
@@ -181,5 +195,33 @@ public class Robot extends TimedRobot {
     // Check bounds
     m_rainbowFirstPixelHue %= 180;
   }
-  
+  public void pidDrive() {
+    final double kP = 0; //change as needed (Speed)
+    final double kI = 0; //change as needed
+    final double kD = 0; //change as needed
+
+    double setPoint = 10; //change as needed
+    double errorSum = 0; //change as needed
+    double lastTimestamp = 0; //change as needed
+    double lastError = 0; //change as needed
+
+
+    double sensorPos = (((_leftMaster.getSelectedSensorPosition()+_leftFollow.getSelectedSensorPosition())/2+(_rightMaster.getSelectedSensorPosition() + _rightFollow.getSelectedSensorPosition())/2)/2)/2048;    
+    double error = setPoint - sensorPos;
+    double iLimit = 1;
+    double dT = Timer.getFPGATimestamp() - lastTimestamp;
+
+    double errorRate = (error - lastError)/dT;
+    double motorPower = kP * error + kI * errorSum + kD * errorRate;
+
+    if(Math.abs(error) < iLimit){
+      errorSum += error * dT;
+
+    }
+    _drive.arcadeDrive(motorPower,motorPower);
+
+    lastTimestamp = Timer.getFPGATimestamp();
+    lastError = error;
+  }
 }
+

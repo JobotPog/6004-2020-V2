@@ -23,11 +23,11 @@ import frc.robot.Commands.*;
 public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    WPI_TalonFX _leftMaster = new WPI_TalonFX(RobotMap.DRIVETRAIN_LEFT_FRONT);
-    WPI_TalonFX _rightMaster = new WPI_TalonFX(RobotMap.DRIVETRAIN_RIGHT_FRONT);
-    WPI_TalonFX  _leftFollow = new WPI_TalonFX (RobotMap.DRIVETRAIN_LEFT_BACK);
-    WPI_TalonFX  _rightFollow = new WPI_TalonFX (RobotMap.DRIVETRAIN_RIGHT_BACK);
-    DifferentialDrive _drive = new DifferentialDrive(_leftMaster, _rightMaster);
+    public WPI_TalonFX _leftMaster = new WPI_TalonFX(RobotMap.DRIVETRAIN_LEFT_FRONT);
+    public WPI_TalonFX _rightMaster = new WPI_TalonFX(RobotMap.DRIVETRAIN_RIGHT_FRONT);
+    public WPI_TalonFX  _leftFollow = new WPI_TalonFX (RobotMap.DRIVETRAIN_LEFT_BACK);
+    public WPI_TalonFX  _rightFollow = new WPI_TalonFX (RobotMap.DRIVETRAIN_RIGHT_BACK);
+    public DifferentialDrive _drive = new DifferentialDrive(_leftMaster, _rightMaster);
     public static OI m_oi;
 
     public DriveTrain(){

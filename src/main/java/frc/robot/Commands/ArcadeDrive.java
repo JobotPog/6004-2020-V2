@@ -36,6 +36,8 @@ public class ArcadeDrive extends Command {
     double forward = 1 * Robot.m_oi._driver.getY();
         double turn = Robot.m_oi._driver.getTwist();
         Robot.driveSub.arcadeDrive(forward, turn);
+
+        
   //System.out.println("command call");
   }
 

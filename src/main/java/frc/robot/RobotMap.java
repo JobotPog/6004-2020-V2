@@ -19,15 +19,21 @@ public class RobotMap {
 	public static final int DRIVETRAIN_LEFT_BACK = 3;   //CAN
 	public static final int DRIVETRAIN_RIGHT_FRONT = 2; //CAN
   public static final int DRIVETRAIN_RIGHT_BACK = 4;  //CAN
+
+  public static final int INTAKE = 8;  //CAN
+  public static final int MAGAZINE = 9;  //CAN
+
+
   
   //SHOOTER
-  public static final int SHOOTER = 5;        //CAN
+  public static final int SHOOTER = 10;        //CAN
   public static final double FRONT_SPEED = .5;  //const
   public static final double REAR_SPEED = .4;   //const
   public static final double DRIVE_SPEED = 1;   //const
   
   //Elevator
-  public static final int LIFT = 4;             //PWM
+  public static final int ELEVATOR_LEFT = 5;  //CAN
+  public static final int ELEVATOR_RIGHT = 6;  //CAN
   public static final double LIFT_SPEED = .6;   //const
 
   //Squishy

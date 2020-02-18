@@ -9,31 +9,36 @@
 package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PWMSparkMax;
+
 import frc.robot.RobotMap;
 import frc.robot.Commands.*;
-import com.ctre.phoenix.motorcontrol.ControlMode;
 
-
+import edu.wpi.first.wpilibj.Timer;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class Shooter extends Subsystem {
+public class Pivot extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-      VictorSPX ShooterSPX = new VictorSPX(RobotMap.SHOOTER);
-  
+      PWMSparkMax PivotSparkMax = new PWMSparkMax(RobotMap.PIVOT);
+
     @Override
     public void initDefaultCommand() {
       // Set the default command for a subsystem here.
-       setDefaultCommand(new ShooterAxis());
+       setDefaultCommand(new PivotCmd(0));
     }
   
   
-      public void update(double p_val) {
+      public void update(double motorSpeed) {
         // Update motor speed to passed in value
-        ShooterSPX.set(ControlMode.PercentOutput,p_val);
+
+        PivotSparkMax.setSpeed(motorSpeed);
+
+        //System.out.print();
       }
-  
+      
+      
   }
 

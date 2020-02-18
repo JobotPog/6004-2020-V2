@@ -46,20 +46,23 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveSub;
-  public static Shooter shooterSub;
+  //public static Shooter shooterSub;
+  public static Pivot pivotSub;
+
 
   /*----------------------------------
   EXAMPLE SUBSYTEM SETUP
   */
-  public static ExampleSub expSub;
+  //public static ExampleSub expSub;
 
+  /*
   public WPI_TalonFX _leftMaster = driveSub._leftMaster;
   public WPI_TalonFX _rightMaster = driveSub._rightMaster;
   public WPI_TalonFX  _leftFollow = driveSub._leftFollow;
   public WPI_TalonFX  _rightFollow = driveSub._rightFollow;
 
   DifferentialDrive _drive = driveSub._drive;
-  
+  */
 
 
   //CANSparkMax Pivot = new CANSparkMax(6, MotorType.kBrushless);
@@ -100,11 +103,13 @@ public class Robot extends TimedRobot {
     //m_led.setData(m_ledBuffer);
     //m_led.start();  
     driveSub = new DriveTrain();
+    pivotSub = new Pivot();
+
 
     /*----------------------------------
     EXAMPLE SUBSYTEM INIT
     */
-    expSub = new ExampleSub();
+    //expSub = new ExampleSub();
 
     //ALWAYS LAST!!!!!!!!!!!!!!!!!!!!!!!!!!
     m_oi = new OI();
@@ -195,6 +200,7 @@ public class Robot extends TimedRobot {
     // Check bounds
     m_rainbowFirstPixelHue %= 180;
   }
+  /*
   public void pidDrive() {
     final double kP = 0; //change as needed (Speed)
     final double kI = 0; //change as needed
@@ -223,5 +229,6 @@ public class Robot extends TimedRobot {
     lastTimestamp = Timer.getFPGATimestamp();
     lastError = error;
   }
+  */
 }
 

@@ -24,6 +24,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 import frc.robot.Subsystems.*;
+
+
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -50,7 +52,8 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveSub;
   //public static Shooter shooterSub;
   public static Pivot pivotSub;
-  public static LED LEDcontrol;
+  public static Elevator elevatorSub;
+
 
 
   /*----------------------------------
@@ -105,6 +108,7 @@ public class Robot extends TimedRobot {
     driveSub = new DriveTrain();
     pivotSub = new Pivot();
     LEDcontrol = new LED();
+    elevatorSub = new Elevator();
 
     /*----------------------------------
     EXAMPLE SUBSYTEM INIT

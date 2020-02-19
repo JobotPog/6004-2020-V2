@@ -9,7 +9,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Commands.PivotCmd;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Commands.*;
 
@@ -30,10 +29,15 @@ public Button LADUpdateAll = new JoystickButton(_operator, 4);
 
 public Button Button5 = new JoystickButton(_driver,5);
 public Button Button3 = new JoystickButton(_driver,3);
+public Button Button4 = new JoystickButton(_driver,4);
+public Button Button6 = new JoystickButton(_driver,6);
 
   public OI () {
     Button5.whileHeld(new PivotCmd(15));
     Button3.whileHeld(new PivotCmd(-15));
+
+    Button4.whileHeld(new ElevatorCmd(15));
+    Button6.whileHeld(new ElevatorCmd(-15));
 
 
     

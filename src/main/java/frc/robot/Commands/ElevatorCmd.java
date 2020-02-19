@@ -20,14 +20,14 @@ public class ElevatorCmd extends Command {
   private int speed;
   public ElevatorCmd(int speedInput) {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.pivotSub);
+    requires(Robot.elevatorSub);
     speed = speedInput;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.pivotSub.initDefaultCommand();
+    Robot.elevatorSub.initDefaultCommand();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -36,7 +36,7 @@ public class ElevatorCmd extends Command {
     //System.out.println("aracde command");
     
 
-  Robot.pivotSub.update(speed);
+  Robot.elevatorSub.update(speed);
 
         
         
@@ -52,26 +52,11 @@ public class ElevatorCmd extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.pivotSub.update(0);
+    Robot.elevatorSub.update(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
-
-
-  //implement PID loop here
-
-  protected void pid() {
-    double p = 0;
-    double i = 0;
-    double d = 0;
-    double iz = 0;
-    double ff = 0;
-    double max = 0;
-    double min = 0;
-    double rotations = 0;
-
-  }
 
   @Override
   protected void interrupted() {

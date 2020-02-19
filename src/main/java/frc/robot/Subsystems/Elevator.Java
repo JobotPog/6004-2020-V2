@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 
 import com.ctre.phoenix.motorcontrol.InvertType;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import frc.robot.RobotMap;
 import frc.robot.Commands.*;
@@ -24,11 +24,13 @@ import edu.wpi.first.wpilibj.Timer;
 public class Elevator extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-      VictorSPX VictorSPX = new VictorSPX(RobotMap.ELEVATOR_LEFT);
-      VictorSPX VictorSPX = new VictorSPX(RobotMap.ELEVATOR_RIGHT);
+      WPI_VictorSPX VictorSPX = new WPI_VictorSPX(RobotMap.ELEVATOR_LEFT);
+      WPI_VictorSPX VictorSPX2 = new WPI_VictorSPX(RobotMap.ELEVATOR_RIGHT);
       
-    
 
+      public Elevator(){
+
+      }
 
 
     @Override
@@ -41,8 +43,8 @@ public class Elevator extends Subsystem {
       public void update(double motorSpeed) {
         // Update motor speed to passed in value
 
-        _Elevator.setSpeed(motorSpeed);
-
+        VictorSPX.set(-motorSpeed);
+        VictorSPX2.set(motorSpeed);
         //System.out.print();
       }
       

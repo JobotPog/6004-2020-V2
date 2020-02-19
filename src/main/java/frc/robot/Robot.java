@@ -21,6 +21,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.EncoderType;
 import com.revrobotics.SparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+
 import frc.robot.Subsystems.*;
 
 
@@ -54,6 +56,7 @@ public class Robot extends TimedRobot {
   public static Intake intakeSub;
 
 
+
   /*----------------------------------
   EXAMPLE SUBSYTEM SETUP
   */
@@ -71,10 +74,7 @@ public class Robot extends TimedRobot {
 
   //CANSparkMax Pivot = new CANSparkMax(6, MotorType.kBrushless);
 
-  private AddressableLED m_led;
-  private AddressableLEDBuffer m_ledBuffer;
-  // Store what the last hue of the first pixel is
-  private int m_rainbowFirstPixelHue;
+  
 
   public static OI m_oi;
 
@@ -108,9 +108,9 @@ public class Robot extends TimedRobot {
     //m_led.start();  
     driveSub = new DriveTrain();
     pivotSub = new Pivot();
+    LEDcontrol = new LED();
     elevatorSub = new Elevator();
     intakeSub = new Intake();
-
 
     /*----------------------------------
     EXAMPLE SUBSYTEM INIT
@@ -191,21 +191,7 @@ public class Robot extends TimedRobot {
     
   }
 
-  private void rainbow() {
-    // For every pixel
-    for (var i = 0; i < m_ledBuffer.getLength(); i++) {
-      // Calculate the hue - hue is easier for rainbows because the color
-      // shape is a circle so only one value needs to precess
-      final var hue = (m_rainbowFirstPixelHue + (i * 180 / m_ledBuffer.getLength())) % 180;
-      // Set the value
-      m_ledBuffer.setHSV(i, hue, 255, 128);
-      
-    }
-    // Increase by to make the rainbow "move"
-    m_rainbowFirstPixelHue += 3;
-    // Check bounds
-    m_rainbowFirstPixelHue %= 180;
-  }
+  
   /*
   public void pidDrive() {
     final double kP = 0; //change as needed (Speed)

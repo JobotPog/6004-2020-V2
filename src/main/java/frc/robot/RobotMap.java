@@ -64,4 +64,7 @@ public class RobotMap {
   public static final int SQUISHY_XBOX_LEFTSTICK = 1;    //JOY_axis
   public static final int SQUISHY_XBOX_RIGHTSTICK = 5;    //JOY_axis
 
+  //LED stuff
+  public static final int LED_STRING_LENGTH = 300;  //set to whatever the strand ends up being
+  public static final int LED_PWM = 9;  //PWM
 }

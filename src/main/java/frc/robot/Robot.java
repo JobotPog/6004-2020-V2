@@ -54,7 +54,9 @@ public class Robot extends TimedRobot {
   public static Pivot pivotSub;
   public static Elevator elevatorSub;
   public static Intake intakeSub;
-
+  public static LED LEDcontrol;
+  public static Index indexSub;
+  public static Shooter shooterSub;
 
 
   /*----------------------------------
@@ -111,7 +113,8 @@ public class Robot extends TimedRobot {
     LEDcontrol = new LED();
     elevatorSub = new Elevator();
     intakeSub = new Intake();
-
+    indexSub = new Index();
+    shooterSub = new Shooter();
     /*----------------------------------
     EXAMPLE SUBSYTEM INIT
     */

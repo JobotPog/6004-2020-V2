@@ -21,7 +21,7 @@ public class RobotMap {
   public static final int DRIVETRAIN_RIGHT_BACK = 4;  //CAN
 
   public static final int INTAKE = 8;  //CAN
-  public static final int MAGAZINE = 9;  //CAN
+  public static final int INDEX = 9;  //CAN
 
 
   

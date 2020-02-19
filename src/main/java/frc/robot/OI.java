@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick.AxisType;
 import frc.robot.Commands.*;
 
 /**
@@ -33,6 +34,9 @@ public Button Button4 = new JoystickButton(_driver,4);
 public Button Button6 = new JoystickButton(_driver,6);
 public Button Button2 = new JoystickButton(_driver,2);
 
+public Button Button7 = new JoystickButton(_driver,7);
+public Button Button8 = new JoystickButton(_driver,8);
+
   public OI () {
     Button5.whileHeld(new PivotCmd(15));
     Button3.whileHeld(new PivotCmd(-15));
@@ -41,6 +45,10 @@ public Button Button2 = new JoystickButton(_driver,2);
     Button6.whileHeld(new ElevatorCmd(-15));
 
     Button2.whileHeld(new IntakeCmd(10));
+    Button2.whileHeld(new IndexCmd(10));
+
+    Button7.whileHeld(new ShooterButton(.40));
+    Button8.whileHeld(new ShooterButton(.80));
 
 
     

@@ -23,25 +23,25 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  * An example subsystem. You can replace me with your own Subsystem.
  */
-public class Index extends Subsystem {
+public class Shooter extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    WPI_VictorSPX VictorSPX = new WPI_VictorSPX(RobotMap.INDEX);
+    WPI_VictorSPX VictorSPX = new WPI_VictorSPX(RobotMap.SHOOTER);
 
-    public Index() {
+    public Shooter() {
 
     }
 
     @Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new IndexCmd(0));
+        setDefaultCommand(new ShooterCmd());
     }
   
   
       public void update(double motorSpeed) {
         // Update motor speed to passed in value
-
+        System.out.print(motorSpeed);
         VictorSPX.set(motorSpeed);
         //System.out.print();
       }

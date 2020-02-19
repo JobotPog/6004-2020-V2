@@ -15,19 +15,22 @@ import frc.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class IndexCmd extends Command {
-  public static OI m_oi;
-  private int speed;
-  public IndexCmd(int speedInput) {
+public class ShooterButton extends Command {
+  //public static OI m_oi;
+  private double speed;
+  private double sliderValue; 
+  private double sliderOutput;
+
+  public ShooterButton(double passval) {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.indexSub);
-    speed = speedInput;
-  }
+    requires(Robot.shooterSub);
+    sliderValue = passval;
+      }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.indexSub.initDefaultCommand();
+    Robot.shooterSub.initDefaultCommand();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -35,10 +38,12 @@ public class IndexCmd extends Command {
   protected void execute() {
     //System.out.println("aracde command");
     
-
-  Robot.indexSub.update(speed);
-
-        // System.out.println("command call");
+    
+    //System.out.println(sliderValue);
+    
+    Robot.shooterSub.update(sliderValue);
+      System.out.println(sliderValue);
+        // System.out.println("call shooter button");
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -50,7 +55,7 @@ public class IndexCmd extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-        Robot.indexSub.update(0);
+        Robot.shooterSub.update(0);
   }
 
   // Called when another command which requires one or more of the same

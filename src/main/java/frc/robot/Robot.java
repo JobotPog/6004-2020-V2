@@ -51,6 +51,7 @@ public class Robot extends TimedRobot {
   //public static Shooter shooterSub;
   public static Pivot pivotSub;
   public static Elevator elevatorSub;
+  public static Intake intakeSub;
 
 
   /*----------------------------------
@@ -108,6 +109,7 @@ public class Robot extends TimedRobot {
     driveSub = new DriveTrain();
     pivotSub = new Pivot();
     elevatorSub = new Elevator();
+    intakeSub = new Intake();
 
 
     /*----------------------------------

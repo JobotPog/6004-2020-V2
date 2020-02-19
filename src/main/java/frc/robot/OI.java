@@ -31,6 +31,7 @@ public Button Button5 = new JoystickButton(_driver,5);
 public Button Button3 = new JoystickButton(_driver,3);
 public Button Button4 = new JoystickButton(_driver,4);
 public Button Button6 = new JoystickButton(_driver,6);
+public Button Button2 = new JoystickButton(_driver,2);
 
   public OI () {
     Button5.whileHeld(new PivotCmd(15));
@@ -38,6 +39,8 @@ public Button Button6 = new JoystickButton(_driver,6);
 
     Button4.whileHeld(new ElevatorCmd(15));
     Button6.whileHeld(new ElevatorCmd(-15));
+
+    Button2.whileHeld(new IntakeCmd(10));
 
 
     

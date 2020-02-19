@@ -104,6 +104,7 @@ public class Robot extends TimedRobot {
     //m_led.start();  
     driveSub = new DriveTrain();
     pivotSub = new Pivot();
+    elevatorSub = new Elevator();
 
 
     /*----------------------------------

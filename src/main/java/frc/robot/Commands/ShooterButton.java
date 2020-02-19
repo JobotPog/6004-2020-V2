@@ -42,7 +42,7 @@ public class ShooterButton extends Command {
     //System.out.println(sliderValue);
     
     Robot.shooterSub.update(sliderValue);
-      System.out.println(sliderValue);
+      //System.out.println(sliderValue);
         // System.out.println("call shooter button");
     }
 

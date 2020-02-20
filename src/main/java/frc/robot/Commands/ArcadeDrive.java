@@ -10,17 +10,50 @@ import frc.robot.OI;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import edu.wpi.first.networktables.*;
+//NAVX
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.controller.PIDController;
 
 
 /**
  * An example command.  You can replace me with your own command.
  */
 public class ArcadeDrive extends Command {
-  public static OI m_oi;
+  private boolean driverVision, tapeVision, cargoVision, cargoSeen, tapeSeen   ;
+  private NetworkTableEntry tapeDetected, cargoDetected, tapeYaw, cargoYaw, videoTimestamp, driveWanted,tapeWanted,cargoWanted;
+  private double targetAngle;
+  NetworkTableInstance instance;
+  NetworkTable chickenVision;
+  boolean autoBalanceXMode;
+  boolean autoBalanceYMode;
+  static final double kOffBalanceAngleThresholdDegrees = 10;
+  static final double kOonBalanceAngleThresholdDegrees = 5;
+  //NAVX
+  AHRS ahrs;
+  double rotateToAngleRate;
+  PIDController turnController;
+  static final double kP = 0.03;
+  static final double kI = 0.00;
+  static final double kD = 0.00;
+  static final double kF = 0.00;
+  static final double kToleranceDegrees = 2.0f;
 
   public ArcadeDrive() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.driveSub);
+
+    try {
+        /* Communicate w/navX-MXP via the MXP SPI Bus.                                     */
+        /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
+        /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
+        ahrs = new AHRS(SPI.Port.kMXP); 
+    } catch (RuntimeException ex ) {
+      System.out.println("Error instantiating navX-MXP:  " + ex.getMessage());
+    }
+
+
   }
 
   // Called just before this Command runs the first time
@@ -33,9 +66,27 @@ public class ArcadeDrive extends Command {
   @Override
   protected void execute() {
     //System.out.println("aracde command");
+    System.out.println("arcade drive called");
+    boolean driveslow = Robot.m_oi._driver.getRawButton(1);
     double forward = 1 * Robot.m_oi._driver.getY();
-        double turn = Robot.m_oi._driver.getTwist();
-        Robot.driveSub.arcadeDrive(forward, turn);
+    double turn = Robot.m_oi._driver.getTwist();
+
+    //This code is all about vision tracking!!!
+    // If button 1 is pressed, then it will track cargo
+    if (driveslow) {
+      //slow down inputs for better control
+      if(forward > .45) forward=.45;
+      if(forward < -.45) forward=-.45;
+      if(turn > .45) turn=.55;
+      if(turn < -.45) turn=-.55;
+
+    } else  {
+      //leave inputs be and don't adjust
+
+
+    }
+
+    Robot.driveSub.arcadeDrive(forward, turn);
 
         
   //System.out.println("command call");

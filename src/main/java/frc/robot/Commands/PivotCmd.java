@@ -35,7 +35,7 @@ public class PivotCmd extends Command {
   protected void execute() {
     //System.out.println("aracde command");
     
-
+    System.out.println("pivot called");
   Robot.pivotSub.update(speed);
 
         

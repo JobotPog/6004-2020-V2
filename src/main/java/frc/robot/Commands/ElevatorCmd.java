@@ -17,8 +17,8 @@ import frc.robot.Robot;
  */
 public class ElevatorCmd extends Command {
   public static OI m_oi;
-  private int speed;
-  public ElevatorCmd(int speedInput) {
+  private double speed;
+  public ElevatorCmd(double speedInput) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.elevatorSub);
     speed = speedInput;

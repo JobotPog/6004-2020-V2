@@ -17,8 +17,8 @@ import frc.robot.Robot;
  */
 public class PivotCmd extends Command {
   public static OI m_oi;
-  private int speed;
-  public PivotCmd(int speedInput) {
+  private double speed;
+  public PivotCmd(double speedInput) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.pivotSub);
     speed = speedInput;

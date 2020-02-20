@@ -38,17 +38,19 @@ public Button Button7 = new JoystickButton(_driver,7);
 public Button Button8 = new JoystickButton(_driver,8);
 
   public OI () {
-    Button5.whileHeld(new PivotCmd(15));
-    Button3.whileHeld(new PivotCmd(-15));
+    Button5.whileHeld(new PivotCmd(.15));
+    Button3.whileHeld(new PivotCmd(-.15));
 
-    Button4.whileHeld(new ElevatorCmd(15));
-    Button6.whileHeld(new ElevatorCmd(-15));
+    Button4.whileHeld(new ElevatorCmd(.25)); //down
+    Button6.whileHeld(new ElevatorCmd(-.35)); //up
 
     Button2.whileHeld(new IntakeCmd(10));
     Button2.whileHeld(new IndexCmd(10));
 
-    Button7.whileHeld(new ShooterButton(.40));
-    Button8.whileHeld(new ShooterButton(.80));
+
+
+    Button7.whileHeld(new ShooterButton(.30));
+    Button8.whileHeld(new ShooterButton(.90));
 
 
     

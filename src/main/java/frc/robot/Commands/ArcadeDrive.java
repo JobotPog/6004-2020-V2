@@ -34,8 +34,23 @@ public class ArcadeDrive extends Command {
   protected void execute() {
     //System.out.println("aracde command");
     double forward = 1 * Robot.m_oi._driver.getY();
-        double turn = Robot.m_oi._driver.getTwist();
-        Robot.driveSub.arcadeDrive(forward, turn);
+    double turn = Robot.m_oi._driver.getTwist();
+    boolean driveslow = Robot.m_oi._driver.getRawButton(1);
+    
+    if (driveslow) {
+      //slow down inputs for better control
+      if(forward > .45) forward=.45;
+      if(forward < -.45) forward=-.45;
+      if(turn > .45) turn=.55;
+      if(turn < -.45) turn=-.55;
+
+    } else  {
+      //leave inputs be and don't adjust
+
+
+    }
+
+    Robot.driveSub.arcadeDrive(forward, turn);
 
         
   //System.out.println("command call");

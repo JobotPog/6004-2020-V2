@@ -22,12 +22,6 @@ public class OI {
   public XboxController _operator = new XboxController(RobotMap.OI_OP_CONTROLLER);
   public XboxController _squishy = new XboxController(RobotMap.OI_SQUISHY);
 
-  
-public Button LADDriveFwd = new JoystickButton(_operator, 6);
-public Button LADHold = new JoystickButton(_operator, 5);
-public Button LADRearHold = new JoystickButton(_operator, 3);
-public Button LADUpdateAll = new JoystickButton(_operator, 4);
-
 public Button Button5 = new JoystickButton(_driver,5);
 public Button Button3 = new JoystickButton(_driver,3);
 public Button Button4 = new JoystickButton(_driver,4);
@@ -52,7 +46,5 @@ public Button Button8 = new JoystickButton(_driver,8);
     Button7.whileHeld(new ShooterButton(.30));
     Button8.whileHeld(new ShooterButton(.90));
 
-
-    
   }
 }

@@ -17,8 +17,8 @@ import frc.robot.Robot;
  */
 public class IntakeCmd extends Command {
   public static OI m_oi;
-  private int speed;
-  public IntakeCmd(int speedInput) {
+  private double speed;
+  public IntakeCmd(double speedInput) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.intakeSub);
     speed = speedInput;

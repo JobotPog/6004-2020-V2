@@ -16,9 +16,9 @@ import frc.robot.Robot;
  * An example command.  You can replace me with your own command.
  */
 public class IndexCmd extends Command {
-  public static OI m_oi;
-  private int speed;
-  public IndexCmd(int speedInput) {
+  //public static OI m_oi;
+  private double speed;
+  public IndexCmd(double speedInput) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.indexSub);
     speed = speedInput;
@@ -33,7 +33,7 @@ public class IndexCmd extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //System.out.println("aracde command");
+    //System.out.println("index command");
     
 
   Robot.indexSub.update(speed);

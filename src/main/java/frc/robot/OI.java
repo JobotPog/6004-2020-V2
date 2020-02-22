@@ -38,8 +38,8 @@ public Button Button8 = new JoystickButton(_driver,8);
     Button4.whileHeld(new ElevatorCmd(.25)); //down
     Button6.whileHeld(new ElevatorCmd(-.35)); //up
 
-    Button2.whileHeld(new IntakeCmd(10));
-    Button2.whileHeld(new IndexCmd(10));
+    Button2.whileHeld(new IntakeCmd(1));
+    Button2.whileHeld(new IndexCmd(1));
 
 
 

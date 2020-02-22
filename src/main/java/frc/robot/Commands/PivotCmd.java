@@ -16,12 +16,13 @@ import frc.robot.Robot;
  * An example command.  You can replace me with your own command.
  */
 public class PivotCmd extends Command {
-  public static OI m_oi;
-  private double speed;
+  //public static OI m_oi;
+  private double speed=0;
   public PivotCmd(double speedInput) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.pivotSub);
     speed = speedInput;
+    
   }
 
   // Called just before this Command runs the first time
@@ -33,7 +34,7 @@ public class PivotCmd extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //System.out.println("aracde command");
+    //System.out.println("pivot command");
     
 
   Robot.pivotSub.update(speed);
@@ -61,17 +62,6 @@ public class PivotCmd extends Command {
 
   //implement PID loop here
 
-  protected void pid() {
-    double p = 0;
-    double i = 0;
-    double d = 0;
-    double iz = 0;
-    double ff = 0;
-    double max = 0;
-    double min = 0;
-    double rotations = 0;
-
-  }
 
   @Override
   protected void interrupted() {

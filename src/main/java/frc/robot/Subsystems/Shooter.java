@@ -13,12 +13,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 
 import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import frc.robot.RobotMap;
 import frc.robot.Commands.*;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.VictorSP;
 
 /**
  * An example subsystem. You can replace me with your own Subsystem.
@@ -29,7 +31,7 @@ public class Shooter extends Subsystem {
     WPI_VictorSPX VictorSPX = new WPI_VictorSPX(RobotMap.SHOOTER);
 
     public Shooter() {
-
+        VictorSPX.setNeutralMode(NeutralMode.Brake);
     }
 
     @Override

@@ -33,7 +33,8 @@ public class Pivot extends Subsystem {
   
       public void update(double motorSpeed) {
         // Update motor speed to passed in value
-
+        //System.out.println("pivot");
+        System.out.println(motorSpeed);
         PivotSparkMax.setSpeed(motorSpeed);
 
         //System.out.print();

@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveSub;
   //public static Shooter shooterSub;
-  public static Pivot pivotSub;
+  public static PivotCan pivotSub;
   public static Elevator elevatorSub;
   public static Intake intakeSub;
   public static LED LEDcontrol;
@@ -109,7 +109,7 @@ public class Robot extends TimedRobot {
     //m_led.setData(m_ledBuffer);
     //m_led.start();  
     driveSub = new DriveTrain();
-    pivotSub = new Pivot();
+    pivotSub = new PivotCan();
     LEDcontrol = new LED();
     elevatorSub = new Elevator();
     intakeSub = new Intake();
@@ -181,7 +181,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     //System.out.println("run teleop");
-    
+
    
 
   }

@@ -32,7 +32,7 @@ public class RobotMap {
   public static final double DRIVE_SPEED = 1;   //const
   
   //Elevator
-  public static final int PIVOT = 1; //PWM
+  public static final int PIVOT = 12; //CAN
   public static final int ELEVATOR_LEFT = 5;  //CAN
   public static final int ELEVATOR_RIGHT = 6;  //CAN
   public static final double LIFT_SPEED = .6;   //const

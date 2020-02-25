@@ -12,14 +12,16 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import frc.robot.Commands.*;
+import edu.wpi.first.wpilibj.buttons.POVButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  public Joystick _driver = new Joystick(RobotMap.OI_DRIVER_CONTROLLER); 
-  public XboxController _operator = new XboxController(RobotMap.OI_OP_CONTROLLER);
+  public Joystick _driver = new Joystick(RobotMap.OI_DRIVER_CONTROLLER);
+  public Joystick _operator = new Joystick(RobotMap.OI_OP_CONTROLLER); 
+  //public XboxController _operator = new XboxController(RobotMap.OI_OP_CONTROLLER);
   public XboxController _squishy = new XboxController(RobotMap.OI_SQUISHY);
 
 public Button Button5 = new JoystickButton(_driver,5);
@@ -31,11 +33,14 @@ public Button Button2 = new JoystickButton(_driver,2);
 public Button Button7 = new JoystickButton(_driver,7);
 public Button Button8 = new JoystickButton(_driver,8);
 
+public Button IntakeFwd = new JoystickButton(_operator, 7);
+public Button IntakeRev = new JoystickButton(_operator, 8);
+
   public OI () {
     Button5.whileHeld(new PivotCmd(.15));
     Button3.whileHeld(new PivotCmd(-.15));
 
-    Button4.whileHeld(new ElevatorCmd(.25)); //down
+    Button4.whileHeld(new ElevatorCmd(.35)); //down
     Button6.whileHeld(new ElevatorCmd(-.35)); //up
 
     Button2.whileHeld(new IntakeCmd(1));
@@ -44,7 +49,11 @@ public Button Button8 = new JoystickButton(_driver,8);
 
 
     Button7.whileHeld(new ShooterButton(.30));
-    Button8.whileHeld(new ShooterButton(.90));
+    Button8.whileHeld(new ShooterButton(1));
 
+    IntakeFwd.whileHeld(new IntakeCmd(1));
+    IntakeFwd.whileHeld(new IndexCmd(1));
+    IntakeRev.whileHeld(new IntakeCmd(-1));
+    IntakeRev.whileHeld(new IndexCmd(-1));
   }
 }

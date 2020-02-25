@@ -27,7 +27,7 @@ public class LED extends Subsystem {
     private AddressableLED m_led;
     private AddressableLEDBuffer m_ledBuffer;
     // Store what the last hue of the first pixel is
-    private int m_rainbowFirstPixelHue;      
+    private int m_rainbowFirstPixelHue=1;      
 
     public LED(){
       m_led = new AddressableLED(RobotMap.LED_PWM);
@@ -47,6 +47,7 @@ public class LED extends Subsystem {
     
     // DRIVER from command
     public void showRainbow() {
+      
       rainbow();
       m_led.setData(m_ledBuffer);
     }
@@ -69,7 +70,7 @@ public class LED extends Subsystem {
         final var hue = (m_rainbowFirstPixelHue + (i * 180 / m_ledBuffer.getLength())) % 180;
         // Set the value
         m_ledBuffer.setHSV(i, hue, 255, 128);
-        
+       // System.out.println(i); 
       }
       // Increase by to make the rainbow "move"
       m_rainbowFirstPixelHue += 3;

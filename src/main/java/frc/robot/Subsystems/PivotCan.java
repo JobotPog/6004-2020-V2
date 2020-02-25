@@ -33,7 +33,7 @@ public class PivotCan extends Subsystem {
       public void update(double motorSpeed) {
         // Update motor speed to passed in value
         //System.out.println("pivot");
-        System.out.println(motorSpeed);
+       // System.out.println(motorSpeed);
         CANSparkMax.set(motorSpeed);
 
         //System.out.print();

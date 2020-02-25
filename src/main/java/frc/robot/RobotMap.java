@@ -56,5 +56,5 @@ public class RobotMap {
 
   //LED stuff
   public static final int LED_STRING_LENGTH = 300;  //set to whatever the strand ends up being
-  public static final int LED_PWM = 9;  //PWM
+  public static final int LED_PWM = 8;  //PWM
 }

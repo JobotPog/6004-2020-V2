@@ -46,12 +46,12 @@ public class ArcadeDrive extends Command {
 
     } else  {
       //leave inputs be and don't adjust
-      if(turn > .45) turn=.55;
-      if(turn < -.45) turn=-.55;
+     // if(turn > .45) turn=turn/2;
+     // if(turn < -.45) turn=-(turn/2);
 
     }
 
-    Robot.driveSub.arcadeDrive(forward/2, turn/2);
+    Robot.driveSub.arcadeDrive(forward, turn);
 
         
   //System.out.println("command call");

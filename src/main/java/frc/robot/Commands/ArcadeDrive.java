@@ -17,7 +17,7 @@ import frc.robot.RobotMap;
  */
 public class ArcadeDrive extends Command {
   public static OI m_oi;
-
+  public static Boolean reverse;
   public ArcadeDrive() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.driveSub);
@@ -36,6 +36,13 @@ public class ArcadeDrive extends Command {
     double forward = 1 * Robot.m_oi._driver.getY();
     double turn = Robot.m_oi._driver.getTwist();
     boolean driveslow = Robot.m_oi._driver.getRawButton(1);
+
+    if(Robot.m_oi._driver.getRawButton(11) && reverse == false){
+      reverse = true;
+    }
+    else if(Robot.m_oi._driver.getRawButton(11) && reverse == true){
+      reverse = false;
+    }
     
     if (driveslow) {
       //slow down inputs for better control
@@ -51,8 +58,14 @@ public class ArcadeDrive extends Command {
 
     }
 
-    Robot.driveSub.arcadeDrive(forward, turn);
 
+    
+   // if(reverse == false){
+     // Robot.driveSub.arcadeDrive(forward, turn);
+    //}
+    //if(reverse == true){
+     // Robot.driveSub.arcadeDrive(-forward, -turn);
+    //}
         
   //System.out.println("command call");
   }

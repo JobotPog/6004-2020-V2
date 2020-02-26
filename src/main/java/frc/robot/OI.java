@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import frc.robot.Commands.*;
+import frc.robot.Subsystems.Elevator;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 
 /**
@@ -24,36 +25,50 @@ public class OI {
   //public XboxController _operator = new XboxController(RobotMap.OI_OP_CONTROLLER);
   public XboxController _squishy = new XboxController(RobotMap.OI_SQUISHY);
 
-public Button Button5 = new JoystickButton(_driver,5);
-public Button Button3 = new JoystickButton(_driver,3);
-public Button Button4 = new JoystickButton(_driver,4);
-public Button Button6 = new JoystickButton(_driver,6);
-public Button Button2 = new JoystickButton(_driver,2);
+public Button visionButton = new JoystickButton(_driver,2);
+public Button speedChangeButton = new JoystickButton(_driver,1);
+public Button reverseDrivetrainButton = new JoystickButton(_driver,11);
+public Button intakeInDriver = new JoystickButton(_driver,3);
+public Button intakeOutDriver = new JoystickButton(_driver,4);
 
-public Button Button7 = new JoystickButton(_driver,7);
-public Button Button8 = new JoystickButton(_driver,8);
+public Button ShootT = new JoystickButton(_operator,1);
+public Button ShootL = new JoystickButton(_operator,2);
+public Button PivotUp = new JoystickButton(_operator,5);
+public Button PivotDown = new JoystickButton(_operator,3);
+public Button ElevatorUp = new JoystickButton(_operator,6);
+public Button ElevatorDown = new JoystickButton(_operator,4);
 
-public Button IntakeFwd = new JoystickButton(_operator, 7);
-public Button IntakeRev = new JoystickButton(_operator, 8);
+public Button IntakeIn = new POVButton(_operator, 0);
+public Button IntakeOut = new POVButton(_operator, 180);
 
   public OI () {
-    Button5.whileHeld(new PivotCmd(.15));
-    Button3.whileHeld(new PivotCmd(-.15));
+    PivotUp.whileHeld(new PivotCmd(.15));
+    PivotDown.whileHeld(new PivotCmd(-.15));
 
-    Button4.whileHeld(new ElevatorCmd(.35)); //down
-    Button6.whileHeld(new ElevatorCmd(-.35)); //up
+    ElevatorDown.whileHeld(new ElevatorCmd(.40)); //down
+    ElevatorUp.whileHeld(new ElevatorCmd(-.40)); //up
 
-    Button2.whileHeld(new IntakeCmd(1));
-    Button2.whileHeld(new IndexCmd(1));
+    IntakeIn.whileHeld(new IntakeCmd(1));
+    IntakeIn.whileHeld(new IndexCmd(1));
+    intakeInDriver.whileHeld(new IntakeCmd(1));
+    intakeInDriver.whileHeld(new IndexCmd(1));
 
+    IntakeIn.whileHeld(new IntakeCmd(-1));
+    IntakeIn.whileHeld(new IndexCmd(-1));
+    intakeInDriver.whileHeld(new IntakeCmd(-1));
+    intakeInDriver.whileHeld(new IndexCmd(-1));
 
+    ShootL.whileHeld(new ShooterButton(.30));
+    ShootT.whileHeld(new ShooterButton(1));
 
-    Button7.whileHeld(new ShooterButton(.30));
-    Button8.whileHeld(new ShooterButton(1));
+    IntakeIn.whileHeld(new IntakeCmd(1));
+    IntakeIn.whileHeld(new IndexCmd(1));
+    intakeInDriver.whileHeld(new IntakeCmd(1));
+    intakeInDriver.whileHeld(new IndexCmd(1));
 
-    IntakeFwd.whileHeld(new IntakeCmd(1));
-    IntakeFwd.whileHeld(new IndexCmd(1));
-    IntakeRev.whileHeld(new IntakeCmd(-1));
-    IntakeRev.whileHeld(new IndexCmd(-1));
+    IntakeOut.whileHeld(new IntakeCmd(1));
+    IntakeOut.whileHeld(new IndexCmd(1));
+    intakeOutDriver.whileHeld(new IntakeCmd(1));
+    intakeOutDriver.whileHeld(new IndexCmd(1));
   }
 }

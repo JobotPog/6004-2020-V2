@@ -24,10 +24,7 @@ public class ShooterButton extends Command {
   public ShooterButton(double passval) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.shooterSub);
-    sliderValue = passval;
-    if(passval < 0.3){
-      sliderValue = 0.2;
-    }
+    sliderValue=passval;
       }
 
   // Called just before this Command runs the first time

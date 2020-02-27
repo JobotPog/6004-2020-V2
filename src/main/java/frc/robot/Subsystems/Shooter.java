@@ -12,9 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 
-import com.ctre.phoenix.motorcontrol.InvertType;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.RobotMap;
 import frc.robot.Commands.*;
@@ -28,10 +27,11 @@ import edu.wpi.first.wpilibj.VictorSP;
 public class Shooter extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    WPI_VictorSPX VictorSPX = new WPI_VictorSPX(RobotMap.SHOOTER);
+    CANSparkMax VictorSPX = new CANSparkMax(RobotMap.SHOOTER, MotorType.kBrushless);
+    
 
     public Shooter() {
-        VictorSPX.setNeutralMode(NeutralMode.Brake);
+        //VictorSPX.setNeutralMode(NeutralMode.Brake);
     }
 
     @Override

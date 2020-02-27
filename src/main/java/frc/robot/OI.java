@@ -41,6 +41,8 @@ public Button ElevatorDown = new JoystickButton(_operator,4);
 public Button IntakeIn = new POVButton(_operator, 0);
 public Button IntakeOut = new POVButton(_operator, 180);
 
+public Button RunBack = new JoystickButton(_driver, 12);
+
   public OI () {
     PivotUp.whileHeld(new PivotCmd(.15));
     PivotDown.whileHeld(new PivotCmd(-.15));
@@ -58,8 +60,8 @@ public Button IntakeOut = new POVButton(_operator, 180);
     intakeInDriver.whileHeld(new IntakeCmd(-1));
     intakeInDriver.whileHeld(new IndexCmd(-1));
 
-    ShootL.whileHeld(new ShooterButton(.30));
-    ShootT.whileHeld(new ShooterButton(1));
+    ShootL.whileHeld(new ShooterButton(-.30));
+    ShootT.whileHeld(new ShooterButton(-1));
 
     IntakeIn.whileHeld(new IntakeCmd(1));
     IntakeIn.whileHeld(new IndexCmd(1));
@@ -70,5 +72,7 @@ public Button IntakeOut = new POVButton(_operator, 180);
     IntakeOut.whileHeld(new IndexCmd(1));
     intakeOutDriver.whileHeld(new IntakeCmd(1));
     intakeOutDriver.whileHeld(new IndexCmd(1));
+
+    RunBack.whileHeld(new FixedDrive(1000));
   }
 }

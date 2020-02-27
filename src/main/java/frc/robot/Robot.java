@@ -36,6 +36,9 @@ import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -57,6 +60,8 @@ public class Robot extends TimedRobot {
   public static LED LEDcontrol;
   public static Index indexSub;
   public static Shooter shooterSub;
+  public NetworkTableEntry yaw;
+  public NetworkTableEntry isDriverMode;
 
 
   /*----------------------------------
@@ -94,6 +99,19 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putData("Auto choices", m_chooser);
     System.out.println("robotinit");
+
+     // Gets the default instance of NetworkTables
+     NetworkTableInstance table = NetworkTableInstance.getDefault();
+
+     // Gets the MyCamName table under the chamelon-vision table
+     // MyCamName will vary depending on the name of your camera
+     NetworkTable cameraTable = table.getTable("chameleon-vision").getSubTable("MyCamName");
+
+     // Gets the yaw to the target from the cameraTable
+     yaw = cameraTable.getEntry("yaw");
+
+     // Gets the driveMode boolean from the cameraTable
+     isDriverMode = cameraTable.getEntry("driver_mode");
 
      // PWM port 9
     // Must be a PWM header, not MXP or DIO
@@ -182,6 +200,8 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     //System.out.println("run teleop");
 
+    // Sets driver mode to true if the A button is pressed
+    isDriverMode.setBoolean(m_oi._operator.getRawButton(1));
    
 
   }

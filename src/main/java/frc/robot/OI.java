@@ -73,6 +73,8 @@ public Button RunBack = new JoystickButton(_driver, 12);
     intakeOutDriver.whileHeld(new IntakeCmd(1));
     intakeOutDriver.whileHeld(new IndexCmd(1));
 
-    RunBack.whileHeld(new FixedDrive(1000));
+    
+    RunBack.whileHeld(new FixedDrive(2000));
+    RunBack.whenReleased(new FixedDriveStop());
   }
 }

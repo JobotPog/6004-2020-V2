@@ -40,6 +40,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
+import edu.wpi.first.wpilibj.RobotController;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -181,6 +182,40 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    
+    // Move robot
+    long millisecondsToRun = 2000; // This should run 1000ms = 1 s.
+    long initTime = RobotController.getFPGATime();
+    while (RobotController.getFPGATime() - initTime <= millisecondsToRun){
+        // Place your code here.        
+        Robot.driveSub.arcadeDrive(-.35, 0);
+    }
+    Robot.driveSub.arcadeDrive(0, 0); // stop the robot, not sure if this will brake or not, 
+                                      // but prevent roll out I hope
+
+    // Spool up shooter
+    millisecondsToRun = 1500; // This should run 1000ms = 1 s.
+    initTime = RobotController.getFPGATime();
+    while (RobotController.getFPGATime() - initTime <= millisecondsToRun){
+        // Place your code here.        
+        Robot.shooterSub.update(-1);
+    }
+
+    //Runs shooter code for 5 seconds with magazine
+    millisecondsToRun = 5000; // This should run 1000ms = 1 s.
+    initTime = RobotController.getFPGATime();
+    while (RobotController.getFPGATime() - initTime <= millisecondsToRun){
+        // Place your code here.        
+        Robot.shooterSub.update(-1);
+        Robot.indexSub.update(-.75);
+        Robot.intakeSub.update(-1);
+    }
+
+    
+    Robot.shooterSub.update(0);
+    Robot.indexSub.update(0);
+    Robot.intakeSub.update(0);
+
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here

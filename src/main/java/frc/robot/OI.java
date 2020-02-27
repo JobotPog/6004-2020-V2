@@ -51,27 +51,27 @@ public Button RunBack = new JoystickButton(_driver, 12);
     ElevatorUp.whileHeld(new ElevatorCmd(-.40)); //up
 
     IntakeIn.whileHeld(new IntakeCmd(1));
-    IntakeIn.whileHeld(new IndexCmd(1));
+    IntakeIn.whileHeld(new IndexCmd(.75));
     intakeInDriver.whileHeld(new IntakeCmd(1));
-    intakeInDriver.whileHeld(new IndexCmd(1));
+    intakeInDriver.whileHeld(new IndexCmd(.75));
 
     IntakeIn.whileHeld(new IntakeCmd(-1));
-    IntakeIn.whileHeld(new IndexCmd(-1));
+    IntakeIn.whileHeld(new IndexCmd(-.75));
     intakeInDriver.whileHeld(new IntakeCmd(-1));
-    intakeInDriver.whileHeld(new IndexCmd(-1));
+    intakeInDriver.whileHeld(new IndexCmd(-.75));
 
-    ShootL.whileHeld(new ShooterButton(-.30));
+    ShootL.whileHeld(new ShooterButton(-.20));
     ShootT.whileHeld(new ShooterButton(-1));
 
     IntakeIn.whileHeld(new IntakeCmd(1));
-    IntakeIn.whileHeld(new IndexCmd(1));
+    IntakeIn.whileHeld(new IndexCmd(.75));
     intakeInDriver.whileHeld(new IntakeCmd(1));
-    intakeInDriver.whileHeld(new IndexCmd(1));
+    intakeInDriver.whileHeld(new IndexCmd(.75));
 
     IntakeOut.whileHeld(new IntakeCmd(1));
-    IntakeOut.whileHeld(new IndexCmd(1));
+    IntakeOut.whileHeld(new IndexCmd(.75));
     intakeOutDriver.whileHeld(new IntakeCmd(1));
-    intakeOutDriver.whileHeld(new IndexCmd(1));
+    intakeOutDriver.whileHeld(new IndexCmd(.75));
 
     
     RunBack.whileHeld(new FixedDrive(2000));

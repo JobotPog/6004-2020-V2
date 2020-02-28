@@ -30,19 +30,19 @@ public class FixedDrive extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //Robot.driveSub.initDefaultCommand();
+    Robot.driveSub.initDefaultCommand();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //System.out.println("aracde command");
-    long millisecondsToRun = 2; // This should run 1000ms = 1 s.
+    System.out.println("aracde command");
+    //long millisecondsToRun = 2; // This should run 1000ms = 1 s.
     long initTime = RobotController.getFPGATime();
     while (RobotController.getFPGATime() - initTime <= m_timeout){
         // Place your code here.
         System.out.println("run back to thing");
-        //Robot.driveSub.arcadeDrive(.15, 0);
+        Robot.driveSub.arcadeDrive(.15, 0);
     }
 
   //System.out.println("command call");

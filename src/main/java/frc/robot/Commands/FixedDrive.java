@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -20,9 +21,8 @@ public class FixedDrive extends Command {
   public static Boolean reverse;
   private double m_timeout;
 
-  public FixedDrive(double timeout) {
+  public FixedDrive() {
     // Use requires() here to declare subsystem dependencies
-    m_timeout = timeout;
     requires(Robot.driveSub);
     System.out.println("run back init");
   }
@@ -38,13 +38,12 @@ public class FixedDrive extends Command {
   protected void execute() {
     System.out.println("aracde command");
     //long millisecondsToRun = 2; // This should run 1000ms = 1 s.
-    long initTime = RobotController.getFPGATime();
-    while (RobotController.getFPGATime() - initTime <= m_timeout){
+    
         // Place your code here.
-        System.out.println("run back to thing");
-        Robot.driveSub.arcadeDrive(-.35, 0);
-    }
-
+    Robot.driveSub.arcadeDrive(-.5, 0);
+    Timer.delay(1.4);
+    Robot.driveSub.arcadeDrive(0, 0);
+    end();
   //System.out.println("command call");
   }
 

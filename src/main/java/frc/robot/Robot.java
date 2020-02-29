@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -142,6 +143,7 @@ public class Robot extends TimedRobot {
     shooterSub = new Shooter();
 
 
+    
     /*----------------------------------
     EXAMPLE SUBSYTEM INIT
     */
@@ -190,17 +192,17 @@ public class Robot extends TimedRobot {
 
     System.out.println("moveBackward");
     driveSub.arcadeDrive(-0.35,0);
-    Timer.delay(1.5);
+    Timer.delay(1.75);
     driveSub.arcadeDrive(0,0);
 
     System.out.println("moveForward");
     driveSub.arcadeDrive(0.35,0);
-    Timer.delay(1.25);
+    Timer.delay(1.5);
     driveSub.arcadeDrive(0,0);
 
     System.out.println("shooterStart");
-    shooterSub.update(-0.3); //-0.67
-    Timer.delay(1.0);
+    shooterSub.update(-0.69); //-0.67
+    Timer.delay(1.5);
        
     System.out.println("indexStart");
     indexSub.update(0.75);
@@ -221,44 +223,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-
-
-    /*
-    System.out.println("autonomousPeriodicStart");
-
-    // Move robot
-    long millisecondsToRun = 500; // This should run 1000ms = 1 s.
-    System.out.println(initTime);
-
-    while (RobotController.getFPGATime() - initTime <= millisecondsToRun){
-        // Place your code here.        
-        Robot.driveSub.arcadeDrive(-.25, 0); //4.2V for 2 seconds
-
-    }
-    Robot.driveSub.arcadeDrive(0, 0); // stop the robot, not sure if this will brake or not, 
-                                      // but prevent roll out I hope
-
-    // Spool up shooter
-    millisecondsToRun = 1500; // This should run 1000ms = 1 s.
-    while (RobotController.getFPGATime() - (initTime+500) <= millisecondsToRun){
-        // Place your code here.        
-        Robot.shooterSub.update(-1);
-    }
-
-    //Runs shooter code for 5 seconds with magazine
-    millisecondsToRun = 5000; // This should run 1000ms = 1 s.
-    while (RobotController.getFPGATime() - (initTime+500+1500) <= millisecondsToRun){
-        // Place your code here.        
-        Robot.shooterSub.update(-1);
-        Robot.indexSub.update(-.75);
-        Robot.intakeSub.update(-1);
-    }
-
-    
-    Robot.shooterSub.update(0);
-    Robot.indexSub.update(0);
-    Robot.intakeSub.update(0);
-    */
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
@@ -277,7 +241,17 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     //System.out.println("run teleop");
-
+    /*
+    m_oi.RunBack.whenPressed(new InstantCommand() {
+      @Override
+      protected void execute(){
+      Robot.driveSub.arcadeDrive(-.5, 0);
+      Timer.delay(1.4);
+      Robot.driveSub.arcadeDrive(0, 0);
+      end();
+      }
+    });
+    */
     // Sets driver mode to true if the A button is pressed
     isDriverMode.setBoolean(m_oi._operator.getRawButton(1));
    

@@ -47,16 +47,14 @@ public Button RunBack = new JoystickButton(_driver, 12);
     PivotUp.whileHeld(new PivotCmd(.15));
     PivotDown.whileHeld(new PivotCmd(-.15));
 
-    ElevatorDown.whileHeld(new ElevatorCmd(.40)); //down
+    ElevatorDown.whileHeld(new ElevatorCmd(.60)); //down
     ElevatorUp.whileHeld(new ElevatorCmd(-.85)); //up (speed it up)
 
     ShootL.whileHeld(new ShooterButton(-.20));
     ShootT.whileHeld(new ShooterButton(-0.67));
 
-    IntakeIn.whileHeld(new IntakeCmd(1));
     IntakeIn.whileHeld(new IndexCmd(.75));
     intakeInDriver.whileHeld(new IntakeCmd(1));
-    intakeInDriver.whileHeld(new IndexCmd(.75));
 
     IntakeOut.whileHeld(new IndexCmd(-.75));
     intakeOutDriver.whileHeld(new IndexCmd(-.75));
@@ -64,7 +62,7 @@ public Button RunBack = new JoystickButton(_driver, 12);
     intakeOutDriver.whileHeld(new ShooterButton(.1));
 
     
-    RunBack.whileHeld(new FixedDrive(2000));
-    RunBack.whenReleased(new FixedDriveStop());
+    //RunBack.whenPressed(new FixedDrive());
+    //RunBack.whenReleased(new FixedDriveStop());
   }
 }

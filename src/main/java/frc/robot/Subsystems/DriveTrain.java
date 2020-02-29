@@ -56,15 +56,11 @@ public class DriveTrain extends Subsystem {
        setDefaultCommand(new ArcadeDrive());
     }
   
-  
-      public void driveAround() {
-        // Update motor speed to passed in value
-        
-       // _drive.arcadeDrive(-forward, turn);
-      }
 
-      public void arcadeDrive(double speed, double turn){
+
+      public void arcadeDrive(double speed, double turn, Boolean flip){
         //System.out.println(speed);
+
         _drive.arcadeDrive(-speed, turn);
       }
         

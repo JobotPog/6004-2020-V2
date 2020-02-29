@@ -64,6 +64,8 @@ public class Robot extends TimedRobot {
   public static Index indexSub;
   public static Shooter shooterSub;
 
+  public static ArcadeDrive arcadeCmd;
+
   public static FixedDrive fixedDriveCmd;
   public static FixedDriveStop fixedDriveStopCmd;
 
@@ -141,7 +143,7 @@ public class Robot extends TimedRobot {
     intakeSub = new Intake();
     indexSub = new Index();
     shooterSub = new Shooter();
-
+    
 
     
     /*----------------------------------
@@ -191,15 +193,16 @@ public class Robot extends TimedRobot {
     pivotSub.update(0);
 
     System.out.println("moveBackward");
-    driveSub.arcadeDrive(-0.35,0);
+    driveSub.arcadeDrive(-0.35,0, false);
     Timer.delay(1.75);
-    driveSub.arcadeDrive(0,0);
+    driveSub.arcadeDrive(0,0, false);
 
     System.out.println("moveForward");
-    driveSub.arcadeDrive(0.35,0);
+    driveSub.arcadeDrive(0.35,0, false);
     Timer.delay(1.5);
-    driveSub.arcadeDrive(0,0);
+    driveSub.arcadeDrive(0,0, false);
 
+    
     System.out.println("shooterStart");
     shooterSub.update(-0.69); //-0.67
     Timer.delay(1.5);
@@ -211,7 +214,7 @@ public class Robot extends TimedRobot {
     System.out.println("cancel");
     shooterSub.update(0);
     indexSub.update(0);
-    driveSub.arcadeDrive(0,0);
+    driveSub.arcadeDrive(0,0, false);
 
     System.out.println(":) done");
 

@@ -40,9 +40,9 @@ public class FixedDrive extends Command {
     //long millisecondsToRun = 2; // This should run 1000ms = 1 s.
     
         // Place your code here.
-    Robot.driveSub.arcadeDrive(-.5, 0);
+    Robot.driveSub.arcadeDrive(-.5, 0, false);
     Timer.delay(1.4);
-    Robot.driveSub.arcadeDrive(0, 0);
+    Robot.driveSub.arcadeDrive(0, 0, false);
     end();
   //System.out.println("command call");
   }

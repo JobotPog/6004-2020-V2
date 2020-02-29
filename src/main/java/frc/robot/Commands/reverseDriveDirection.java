@@ -11,16 +11,17 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class FixedDriveStop extends Command {
+public class reverseDriveDirection extends Command {
   
   public static Boolean reverse;
   private double m_timeout;
 
-  public FixedDriveStop() {
+  public reverseDriveDirection() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.driveSub);
   }
@@ -28,17 +29,21 @@ public class FixedDriveStop extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //Robot.driveSub.initDefaultCommand();
+    Robot.driveSub.initDefaultCommand();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //System.out.println("aracde command");
-    Robot.driveSub.arcadeDrive(0, 0, false);
-    
+    System.out.println("aracde command");
 
-  //System.out.println("command call");
+  }
+
+  public void update(Boolean flip) {
+    if(flip==true){
+        Robot;
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

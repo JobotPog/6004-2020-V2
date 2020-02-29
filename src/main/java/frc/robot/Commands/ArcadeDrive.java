@@ -29,6 +29,8 @@ public class ArcadeDrive extends Command {
     Robot.driveSub.initDefaultCommand();
   }
 
+
+  
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
@@ -58,8 +60,10 @@ public class ArcadeDrive extends Command {
 
     }
 
+    
+    
 
-    Robot.driveSub.arcadeDrive(forward, turn);
+    Robot.driveSub.arcadeDrive(forward, turn, false);
    // if(reverse == false){
      // Robot.driveSub.arcadeDrive(forward, turn);
     //}

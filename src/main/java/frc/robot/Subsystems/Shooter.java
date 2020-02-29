@@ -43,7 +43,7 @@ public class Shooter extends Subsystem {
   
       public void update(double motorSpeed) {
         // Update motor speed to passed in value
-        System.out.print(motorSpeed);
+        //System.out.print(motorSpeed);
         VictorSPX.set(motorSpeed);
         //System.out.print();
       }

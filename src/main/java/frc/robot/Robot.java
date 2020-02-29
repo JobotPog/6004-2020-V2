@@ -24,6 +24,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 import frc.robot.Subsystems.*;
+import frc.robot.Commands.*;
 
 
 import com.ctre.phoenix.motorcontrol.InvertType;
@@ -40,6 +41,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
+import edu.wpi.first.wpilibj.RobotController;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -60,9 +62,14 @@ public class Robot extends TimedRobot {
   public static LED LEDcontrol;
   public static Index indexSub;
   public static Shooter shooterSub;
+
+  public static FixedDrive fixedDriveCmd;
+  public static FixedDriveStop fixedDriveStopCmd;
+
+
   public NetworkTableEntry yaw;
   public NetworkTableEntry isDriverMode;
-
+  private long initTime;
 
   /*----------------------------------
   EXAMPLE SUBSYTEM SETUP
@@ -133,6 +140,8 @@ public class Robot extends TimedRobot {
     intakeSub = new Intake();
     indexSub = new Index();
     shooterSub = new Shooter();
+
+
     /*----------------------------------
     EXAMPLE SUBSYTEM INIT
     */
@@ -172,15 +181,84 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
+
+    driveSub._drive.setSafetyEnabled(false);
+
+    pivotSub.update(-.15);
+    Timer.delay(1.0);
+    pivotSub.update(0);
+
+    System.out.println("moveBackward");
+    driveSub.arcadeDrive(-0.35,0);
+    Timer.delay(1.5);
+    driveSub.arcadeDrive(0,0);
+
+    System.out.println("moveForward");
+    driveSub.arcadeDrive(0.35,0);
+    Timer.delay(1.25);
+    driveSub.arcadeDrive(0,0);
+
+    System.out.println("shooterStart");
+    shooterSub.update(-0.3); //-0.67
+    Timer.delay(1.0);
+       
+    System.out.println("indexStart");
+    indexSub.update(0.75);
+    Timer.delay(3);
+
+    System.out.println("cancel");
+    shooterSub.update(0);
+    indexSub.update(0);
+    driveSub.arcadeDrive(0,0);
+
+    System.out.println(":) done");
+
   }
+
 
   /**
    * This function is called periodically during autonomous.
    */
   @Override
   public void autonomousPeriodic() {
+
+
+    /*
+    System.out.println("autonomousPeriodicStart");
+
+    // Move robot
+    long millisecondsToRun = 500; // This should run 1000ms = 1 s.
+    System.out.println(initTime);
+
+    while (RobotController.getFPGATime() - initTime <= millisecondsToRun){
+        // Place your code here.        
+        Robot.driveSub.arcadeDrive(-.25, 0); //4.2V for 2 seconds
+
+    }
+    Robot.driveSub.arcadeDrive(0, 0); // stop the robot, not sure if this will brake or not, 
+                                      // but prevent roll out I hope
+
+    // Spool up shooter
+    millisecondsToRun = 1500; // This should run 1000ms = 1 s.
+    while (RobotController.getFPGATime() - (initTime+500) <= millisecondsToRun){
+        // Place your code here.        
+        Robot.shooterSub.update(-1);
+    }
+
+    //Runs shooter code for 5 seconds with magazine
+    millisecondsToRun = 5000; // This should run 1000ms = 1 s.
+    while (RobotController.getFPGATime() - (initTime+500+1500) <= millisecondsToRun){
+        // Place your code here.        
+        Robot.shooterSub.update(-1);
+        Robot.indexSub.update(-.75);
+        Robot.intakeSub.update(-1);
+    }
+
+    
+    Robot.shooterSub.update(0);
+    Robot.indexSub.update(0);
+    Robot.intakeSub.update(0);
+    */
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here

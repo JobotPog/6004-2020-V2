@@ -43,6 +43,8 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 import edu.wpi.first.wpilibj.RobotController;
+
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -143,7 +145,7 @@ public class Robot extends TimedRobot {
     intakeSub = new Intake();
     indexSub = new Index();
     shooterSub = new Shooter();
-    
+
 
     
     /*----------------------------------

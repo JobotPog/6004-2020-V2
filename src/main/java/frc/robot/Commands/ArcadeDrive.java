@@ -38,6 +38,7 @@ public class ArcadeDrive extends Command {
     double forward = 1 * Robot.m_oi._driver.getY();
     double turn = Robot.m_oi._driver.getTwist();
     boolean driveslow = Robot.m_oi._driver.getRawButton(1);
+    boolean driveReverse = Robot.m_oi._driver.getRawButton(2);
 
     /*if(Robot.m_oi._driver.getRawButton(11) && reverse == false){
       reverse = true;
@@ -60,7 +61,10 @@ public class ArcadeDrive extends Command {
 
     }
 
-    
+    if (driveReverse) {
+      forward = forward * -1;
+      turn = turn * -1;
+    }
     
 
     Robot.driveSub.arcadeDrive(forward, turn, false);

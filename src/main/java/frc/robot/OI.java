@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import frc.robot.Commands.*;
+import frc.robot.Subsystems.DriveTrain;
 import frc.robot.Subsystems.Elevator;
 import edu.wpi.first.wpilibj.buttons.POVButton;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,37 +23,40 @@ import edu.wpi.first.wpilibj.buttons.POVButton;
  */
 public class OI {
   public Joystick _driver = new Joystick(RobotMap.OI_DRIVER_CONTROLLER);
-  public Joystick _operator = new Joystick(RobotMap.OI_OP_CONTROLLER); 
-  //public XboxController _operator = new XboxController(RobotMap.OI_OP_CONTROLLER);
+  public Joystick _operator = new Joystick(RobotMap.OI_OP_CONTROLLER);
+  // public XboxController _operator = new
+  // XboxController(RobotMap.OI_OP_CONTROLLER);
   public XboxController _squishy = new XboxController(RobotMap.OI_SQUISHY);
 
-public Button visionButton = new JoystickButton(_driver,2);
-public Button speedChangeButton = new JoystickButton(_driver,1);
-public Button reverseDrivetrainButton = new JoystickButton(_driver,11);
-public Button intakeInDriver = new JoystickButton(_driver,3);
-public Button intakeOutDriver = new JoystickButton(_driver,4);
+  public Button visionButton = new JoystickButton(_driver, 2);
+  public Button speedChangeButton = new JoystickButton(_driver, 1);
+  public Button reverseDrivetrainButton = new JoystickButton(_driver, 2);
+  public Button intakeInDriver = new JoystickButton(_driver, 3);
+  public Button intakeOutDriver = new JoystickButton(_driver, 4);
 
-public Button ShootT = new JoystickButton(_operator,1);
-public Button ShootL = new JoystickButton(_operator,2);
-public Button PivotUp = new JoystickButton(_operator,5);
-public Button PivotDown = new JoystickButton(_operator,3);
-public Button ElevatorUp = new JoystickButton(_operator,6);
-public Button ElevatorDown = new JoystickButton(_operator,4);
+  public Button ShootT = new JoystickButton(_operator, 1);
+  public Button ShootL = new JoystickButton(_operator, 2);
+  public Button ShootF = new JoystickButton(_operator, 11);
+  public Button PivotUp = new JoystickButton(_operator, 5);
+  public Button PivotDown = new JoystickButton(_operator, 3);
+  public Button ElevatorUp = new JoystickButton(_operator, 6);
+  public Button ElevatorDown = new JoystickButton(_operator, 4);
 
-public Button IntakeIn = new JoystickButton(_operator, 9);
-public Button IntakeOut = new JoystickButton(_operator, 10);
+  public Button IntakeIn = new JoystickButton(_operator, 9);
+  public Button IntakeOut = new JoystickButton(_operator, 10);
 
-public Button RunBack = new JoystickButton(_driver, 12);
+  public Button RunBack = new JoystickButton(_driver, 12);
 
-  public OI () {
+  public OI() {
     PivotUp.whileHeld(new PivotCmd(.15));
     PivotDown.whileHeld(new PivotCmd(-.15));
 
-    ElevatorDown.whileHeld(new ElevatorCmd(.60)); //down
-    ElevatorUp.whileHeld(new ElevatorCmd(-.85)); //up (speed it up)
+    ElevatorDown.whileHeld(new ElevatorCmd(.60)); // down
+    ElevatorUp.whileHeld(new ElevatorCmd(-.85)); // up (speed it up)
 
     ShootL.whileHeld(new ShooterButton(-.20));
-    ShootT.whileHeld(new ShooterButton(-0.67));
+    ShootT.whileHeld(new ShooterButton(-.67));
+    ShootF.whileHeld(new ShooterButton(-.75));
 
     IntakeIn.whileHeld(new IndexCmd(.75));
     intakeInDriver.whileHeld(new IntakeCmd(1));
@@ -61,8 +66,9 @@ public Button RunBack = new JoystickButton(_driver, 12);
     IntakeOut.whileHeld(new ShooterButton(.1));
     intakeOutDriver.whileHeld(new ShooterButton(.1));
 
-    
-    //RunBack.whenPressed(new FixedDrive());
-    //RunBack.whenReleased(new FixedDriveStop());
+    RunBack.whenPressed(new FixedDriveV2());
+    // RunBack.whenReleased(new FixedDriveStop());
+  
+
   }
 }

@@ -27,6 +27,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Subsystems.*;
 import frc.robot.Commands.*;
 
+import edu.wpi.first.cameraserver.CameraServer;
+
 
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -105,6 +107,10 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     //Pivot.restoreFactoryDefaults();
     //Pivot.getEncoder(EncoderType.kHallSensor, 4096);
+
+    CameraServer.getInstance().startAutomaticCapture(0);
+    CameraServer.getInstance().startAutomaticCapture(1);
+
 
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
@@ -191,7 +197,7 @@ public class Robot extends TimedRobot {
     driveSub._drive.setSafetyEnabled(false);
 
     pivotSub.update(-.15);
-    Timer.delay(1.0);
+    Timer.delay(.25);
     pivotSub.update(0);
 
     System.out.println("moveBackward");

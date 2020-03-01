@@ -10,71 +10,39 @@ import frc.robot.OI;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-
+import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ArcadeDrive extends Command {
-  public static OI m_oi;
+public class FixedDriveV2 extends Command {
+  
   public static Boolean reverse;
-  public ArcadeDrive() {
+  private double m_timeout;
+
+  public FixedDriveV2() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.driveSub);
+    System.out.println("run back init");
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.driveSub.initDefaultCommand();
+    //Robot.driveSub.initDefaultCommand();
   }
 
-
-  
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //System.out.println("aracde command");
-    double forward = 1 * Robot.m_oi._driver.getY();
-    double turn = Robot.m_oi._driver.getTwist();
-    boolean driveslow = Robot.m_oi._driver.getRawButton(1);
-    boolean driveReverse = Robot.m_oi._driver.getRawButton(2);
-
-    /*if(Robot.m_oi._driver.getRawButton(11) && reverse == false){
-      reverse = true;
-    }
-    else if(Robot.m_oi._driver.getRawButton(11) && reverse == true){
-      reverse = false;
-    }*/
+    System.out.println("aracde command");
+    //long millisecondsToRun = 2; // This should run 1000ms = 1 s.
     
-    if (driveslow) {
-      //slow down inputs for better control
-      if(forward > .45) forward=.45;
-      if(forward < -.45) forward=-.45;
-      if(turn > .45) turn=.35;
-      if(turn < -.45) turn=-.35;
-
-    } else  {
-      //leave inputs be and don't adjust
-     // if(turn > .45) turn=turn/2;
-     // if(turn < -.45) turn=-(turn/2);
-
-    }
-
-    if (driveReverse) {
-      forward = forward * -1;
-      turn = turn * 1;
-    }
-    
-
-    Robot.driveSub.arcadeDrive(forward*.90, turn*.55, false);
-   // if(reverse == false){
-     // Robot.driveSub.arcadeDrive(forward, turn);
-    //}
-    //if(reverse == true){
-     // Robot.driveSub.arcadeDrive(-forward, -turn);
-    //}
-        
+        // Place your code here.
+    Robot.driveSub.arcadeDrive(-.5, 0, false);
+    Timer.delay(1.4);
+    Robot.driveSub.arcadeDrive(0, 0, false);
   //System.out.println("command call");
   }
 
@@ -87,6 +55,9 @@ public class ArcadeDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+   Robot.driveSub.arcadeDrive(0,0,false);
+   end();
+
   }
 
   // Called when another command which requires one or more of the same
